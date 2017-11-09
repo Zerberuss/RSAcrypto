@@ -1,4 +1,4 @@
-package imsCrypto;
+package at.fhjoanneum.ims.rsacrypto.imsCrypto;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

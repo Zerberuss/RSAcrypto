@@ -1,7 +1,7 @@
 /**
  * 
  */
-package imsCrypto;
+package at.fhjoanneum.ims.rsacrypto.imsCrypto;
 
 import java.util.Random;
 

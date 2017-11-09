@@ -1,11 +1,11 @@
-package imsCrypto;
+package at.fhjoanneum.ims.rsacrypto.imsCrypto;
 
 import java.util.Random;
 
 public class CarMichaelCreator {
 	
 	private static int numOfPrimeTests = 40; // how often the primality test has to be passed in order to be accepted as a prime
-	private static int informEveryNthNumber = 10000; // after that many trials to find a carmichael number, the user is informed
+	private static int informEveryNthNumber = 10000; // after that many trials to find a at.fhjoanneum.ims.rsacrypto.carmichael number, the user is informed
 
 	public ImsInteger createCMNumber(int bits, boolean outputInfo){
 		StopWatch watch = new StopWatch();
@@ -48,11 +48,11 @@ public class CarMichaelCreator {
 				p3.isProbablePrime(numOfPrimeTests)
 				) );
 		
-		// the carmichael number is found!
+		// the at.fhjoanneum.ims.rsacrypto.carmichael number is found!
 		ImsInteger carmichael = p1.multiply( p2 ).multiply( p3 );
 		watch.stop();
 		
-		// calculate phi(carmichael) and charmichael-phi to output probability information
+		// calculate phi(at.fhjoanneum.ims.rsacrypto.carmichael) and charmichael-phi to output probability information
 		phiCm = p1.subtract(ImsInteger.ONE).multiply(p2.subtract(ImsInteger.ONE)).multiply(p3.subtract(ImsInteger.ONE));
 		ImsInteger antiPhiCm = carmichael.subtract(ImsInteger.ONE).subtract(phiCm);
 		

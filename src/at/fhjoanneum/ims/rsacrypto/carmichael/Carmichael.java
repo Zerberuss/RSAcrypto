@@ -1,9 +1,9 @@
-package carmichael;
+package at.fhjoanneum.ims.rsacrypto.carmichael;
 
-import imsCrypto.ImsInteger;
-import imsCrypto.CarMichaelCreator;
-import imsCrypto.MillerRabinTest;
-import imsCrypto.ProbabilityTest;
+import at.fhjoanneum.ims.rsacrypto.imsCrypto.ImsInteger;
+import at.fhjoanneum.ims.rsacrypto.imsCrypto.CarMichaelCreator;
+import at.fhjoanneum.ims.rsacrypto.imsCrypto.MillerRabinTest;
+import at.fhjoanneum.ims.rsacrypto.imsCrypto.ProbabilityTest;
 
 import java.util.Scanner;
 

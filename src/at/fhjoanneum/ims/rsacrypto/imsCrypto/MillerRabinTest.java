@@ -1,4 +1,4 @@
-package imsCrypto;
+package at.fhjoanneum.ims.rsacrypto.imsCrypto;
 
 
 public class MillerRabinTest extends ProbabilityTest{
