@@ -80,7 +80,6 @@ public class RSA {
         System.out.println("Generated p: " +  p.toString() + ", q: " + q.toString() + ", m: " + m.toString());
     }
 
-=======
     public ImsInteger encrypt(ImsInteger x, RSAKey pubKey) {
         //TODO: Replace pow
         return x.pow(pubKey.getExponent().getValue().intValue()).mod(pubKey.getModulus());
