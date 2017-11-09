@@ -1,12 +1,9 @@
 package at.fhjoanneum.ims.rsacrypto.rsa;
-
 import at.fhjoanneum.ims.rsacrypto.imsCrypto.ImsInteger;
 import com.oracle.tools.packager.Log;
 
 import java.util.Random;
-import sun.awt.InputMethodSupport;
 
-import java.math.BigInteger;
 
 public class RSA {
     private static int numOfPrimeTests = 40; // how often the primality test has to be passed in order to be accepted as a prime
@@ -26,7 +23,7 @@ public class RSA {
         this.e = q;
     }
 
-    public RSA(ImsInteger n, boolean optimized) {
+    public RSA(int n, boolean optimized) {
 
         //generate primes    n > p*q;
 
