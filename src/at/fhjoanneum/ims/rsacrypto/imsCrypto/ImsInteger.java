@@ -30,6 +30,9 @@ public class ImsInteger implements Comparable<ImsInteger> {
 	private void setMyValue(BigInteger myValue) {
 		this.myValue = myValue;
 	}
+	public BigInteger getValue() {
+		return myValue;
+	}
 
 	public ImsInteger(BigInteger val){
 		setMyValue(val);

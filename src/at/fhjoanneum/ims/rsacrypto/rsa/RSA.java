@@ -4,6 +4,9 @@ import at.fhjoanneum.ims.rsacrypto.imsCrypto.ImsInteger;
 import com.oracle.tools.packager.Log;
 
 import java.util.Random;
+import sun.awt.InputMethodSupport;
+
+import java.math.BigInteger;
 
 public class RSA {
     private static int numOfPrimeTests = 40; // how often the primality test has to be passed in order to be accepted as a prime
@@ -77,4 +80,35 @@ public class RSA {
         System.out.println("Generated p: " +  p.toString() + ", q: " + q.toString() + ", m: " + m.toString());
     }
 
+=======
+    public ImsInteger encrypt(ImsInteger x, RSAKey pubKey) {
+        //TODO: Replace pow
+        return x.pow(pubKey.getExponent().getValue().intValue()).mod(pubKey.getModulus());
+    }
+
+    public ImsInteger decrypt(ImsInteger y) {
+        //TODO: Replace pow
+        return y.pow(d.getValue().intValue()).mod(q);
+    }
+
+    public ImsInteger decryptOptimized(ImsInteger y) {
+        ImsInteger dp = d.mod(p.subtract(ImsInteger.ONE));
+        ImsInteger dq = d.mod(q.subtract(ImsInteger.ONE));
+        ImsInteger qInverse = inverse(q,p);
+
+        ImsInteger m1 = y.modPow(dp, q);
+        ImsInteger m2 = y.modPow(dq, p);
+        ImsInteger h = qInverse.multiply(m1.subtract(m2)).mod(p);
+        return m2.add(h.multiply(q));
+
+    }
+
+    private ImsInteger inverse(ImsInteger a, ImsInteger N) {
+        ImsInteger[] ans = a.getBezout(N);
+        if(ans[1].compareTo(ImsInteger.ZERO) == 1) {
+            return ans[1];
+        } else {
+            return ans[1].add(N);
+        }
+    }
 }
