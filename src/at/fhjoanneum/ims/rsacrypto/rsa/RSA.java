@@ -1,6 +1,5 @@
 package at.fhjoanneum.ims.rsacrypto.rsa;
 import at.fhjoanneum.ims.rsacrypto.imsCrypto.ImsInteger;
-import com.oracle.tools.packager.Log;
 
 import java.util.Random;
 
@@ -104,7 +103,6 @@ public class RSA {
                 p.isProbablePrime(numOfPrimeTests) && q.isProbablePrime(numOfPrimeTests)
         );
 
-        Log.info("Generated p: " +  p.toString() + ", q: " + q.toString());
         System.out.println("Generated p: " +  p.toString() + ", q: " + q.toString() + ", m: " + m.toString());
     }
 
