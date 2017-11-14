@@ -1,17 +1,18 @@
 package at.fhjoanneum.ims.rsacrypto.rsa;
 import at.fhjoanneum.ims.rsacrypto.imsCrypto.ImsInteger;
-import at.fhjoanneum.ims.rsacrypto.imsCrypto.MillerRabinTest;
 
 import java.util.Random;
 
 
 public class RSA {
-    private static int numOfPrimeTests = 44; // how often the primality test has to be passed in order to be accepted as a prime
+    private static int numOfPrimeTests = 40; // how often the primality test has to be passed in order to be accepted as a prime
+    private static int informEveryNthNumber = 10000; // after that many trials to find a at.fhjoanneum.ims.rsacrypto.carmichael number, the user is informed
+
 
     private ImsInteger p;
     private ImsInteger q;
     private ImsInteger e;
-    private Integer n;
+    private int n;
     private ImsInteger d;
     private boolean optimized;
 
@@ -21,13 +22,11 @@ public class RSA {
         this.e = q;
     }
 
-    public RSA(Integer n, boolean optimized) {
+    public RSA(int n, boolean optimized) {
 
-        this.n = n;
-        generatePQ();
         //generate primes    n > p*q;
 
-
+        this.n = n;
         if (optimized) {
             //genreate pq
             //hardcoded e  2^16+1
@@ -79,44 +78,33 @@ public class RSA {
         return n;
     }
 
-    public ImsInteger generatePrime(Integer n) {
-
-        MillerRabinTest millerTest = new MillerRabinTest();
+    public void generatePQ() {
         //generate random numbers
-        n = n/2;
-        ImsInteger m = new ImsInteger(n, new Random());
-        System.out.println("New " + n + "bit random: " + m.getValue());
+        ImsInteger m = new ImsInteger(this.n/2, new Random());
+        ImsInteger counter = ImsInteger.ZERO; // used to determine when to output information
 
-        ImsInteger prime;
 
         // increase m by one until all terms are prime
         do{
+            counter=counter.add(ImsInteger.ONE);
             m = m.add(ImsInteger.ONE);
 
-            prime = ImsInteger.ONE.multiply(m).add(ImsInteger.ONE);
+            // inform the user how many numbers we already checked
+            if(counter.mod(ImsInteger.valueOf(informEveryNthNumber)).compareTo(ImsInteger.ZERO)==0)
+            {
+                System.out.println("Checked " + counter + " numbers, current basis: " + m);
+            }
 
-        }while (millerTest.run(prime, numOfPrimeTests, false) != true);
+            p = ImsInteger.valueOf(1).multiply(m).add(ImsInteger.ONE);
+            q = ImsInteger.valueOf(2).multiply(m).add(ImsInteger.ONE);
 
-        return prime;
+
+        }while(
+                p.isProbablePrime(numOfPrimeTests) && q.isProbablePrime(numOfPrimeTests)
+        );
+
+        System.out.println("Generated p: " +  p.toString() + ", q: " + q.toString() + ", m: " + m.toString());
     }
-
-    public void generatePQ() {
-        q = generatePrime(this.n);
-
-        do{
-            p = generatePrime(this.n);
-        } while (p.compareTo(q) == 0);
-
-        System.out.println("Generated p: " +  p.toString() + ", q: " + q.toString() + ", p*q => " + q.multiply(p).bitLength()+ " bits");
-    }
-
-
-
-
-
-
-
-
 
     public ImsInteger encrypt(ImsInteger x, RSAKey pubKey) {
         //TODO: Replace pow
