@@ -23,11 +23,14 @@ public class RSA {
         this.e = q;
     }
 
-        this.n = n;
-        generatePQ();
+
+
     public RSA(int n, boolean optimized) {
         this.optimized = optimized;
         //generate primes    n > p*q;
+
+        this.n = n;
+        generatePQ();
 
         if (optimized) {
             this.e = modPow(ImsInteger.valueOf(16), ImsInteger.ONE, ImsInteger.valueOf(2)).add(ImsInteger.ONE);
