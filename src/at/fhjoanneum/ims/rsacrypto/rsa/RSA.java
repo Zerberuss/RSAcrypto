@@ -12,7 +12,7 @@ public class RSA {
     private ImsInteger p;
     private ImsInteger q;
     private ImsInteger e;
-    private int n;
+    private Integer n;
     private ImsInteger d;
     private boolean optimized;
 
@@ -22,8 +22,10 @@ public class RSA {
         this.e = q;
     }
 
-    public RSA(int n, boolean optimized) {
+    public RSA(Integer n, boolean optimized) {
 
+
+        generatePQ();
         //generate primes    n > p*q;
 
         this.n = n;
@@ -78,11 +80,15 @@ public class RSA {
         return n;
     }
 
-    public void generatePQ() {
+    public ImsInteger generatePrime(Integer n) {
         //generate random numbers
-        ImsInteger m = new ImsInteger(this.n/2, new Random());
-        ImsInteger counter = ImsInteger.ZERO; // used to determine when to output information
+        n = n/2;
+        ImsInteger m = new ImsInteger(n.intValue(), new Random());
+        System.out.println("New " + n + "bit random: " + m.getValue());
 
+
+        ImsInteger counter = ImsInteger.ZERO; // used to determine when to output information
+        ImsInteger prime;
 
         // increase m by one until all terms are prime
         do{
@@ -95,16 +101,44 @@ public class RSA {
                 System.out.println("Checked " + counter + " numbers, current basis: " + m);
             }
 
-            p = ImsInteger.valueOf(1).multiply(m).add(ImsInteger.ONE);
-            q = ImsInteger.valueOf(2).multiply(m).add(ImsInteger.ONE);
+            prime = m.add(ImsInteger.ONE);
+
+        }while (prime.isProbablePrime(numOfPrimeTests));
+
+        return prime;
 
 
-        }while(
-                p.isProbablePrime(numOfPrimeTests) && q.isProbablePrime(numOfPrimeTests)
-        );
 
-        System.out.println("Generated p: " +  p.toString() + ", q: " + q.toString() + ", m: " + m.toString());
+
     }
+
+    public void generatePQ() {
+
+
+        q = generatePrime(this.n);
+
+        do{
+            p = generatePrime(this.n);
+        } while (p.compareTo(q) == 0);
+
+        System.out.println("Generated p: " +  p.toString() + ", q: " + q.toString());
+        System.out.println(p.bitCount());
+        System.out.println(q.bitCount());
+        System.out.println(q.bitLength());
+        System.out.println(q.multiply(p).bitCount());
+        System.out.println(q.multiply(p).bitLength());
+
+
+
+    }
+
+
+
+
+
+
+
+
 
     public ImsInteger encrypt(ImsInteger x, RSAKey pubKey) {
         //TODO: Replace pow
