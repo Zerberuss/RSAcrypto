@@ -1,6 +1,8 @@
 package at.fhjoanneum.ims.rsacrypto.rsa;
+
 import at.fhjoanneum.ims.rsacrypto.imsCrypto.ImsInteger;
 
+import javax.sound.midi.SysexMessage;
 import java.util.Random;
 
 
@@ -12,6 +14,7 @@ public class RSA {
     private ImsInteger p;
     private ImsInteger q;
     private ImsInteger e;
+    private ImsInteger pq;
     private int n;
     private ImsInteger d;
     private boolean optimized;
@@ -23,22 +26,24 @@ public class RSA {
     }
 
     public RSA(int n, boolean optimized) {
-
+        this.optimized = optimized;
         //generate primes    n > p*q;
-
+        generatePQ();
         this.n = n;
         if (optimized) {
-            //genreate pq
-            //hardcoded e  2^16+1
             this.e = modPow(ImsInteger.valueOf(16), ImsInteger.ONE, ImsInteger.valueOf(2)).add(ImsInteger.ONE);
-            this.d = generateDecryptionKey();
+            this.d = decryptOptimized(e);
         } else {
-            //generate pq
-            //generate e
-            this.d = generateDecryptionKey();
+            ImsInteger m = p.multiply(q);
+
+
+            do {
+                e = new ImsInteger(n, new Random());
+            } while (e.getGcd(m.getPhi()).compareTo(ImsInteger.ONE) == 0);
+
 
         }
-        this.optimized = optimized;
+
     }
 
     private ImsInteger getP() {
@@ -80,18 +85,17 @@ public class RSA {
 
     public void generatePQ() {
         //generate random numbers
-        ImsInteger m = new ImsInteger(this.n/2, new Random());
+        ImsInteger m = new ImsInteger(this.n / 2, new Random());
         ImsInteger counter = ImsInteger.ZERO; // used to determine when to output information
 
 
         // increase m by one until all terms are prime
-        do{
-            counter=counter.add(ImsInteger.ONE);
+        do {
+            counter = counter.add(ImsInteger.ONE);
             m = m.add(ImsInteger.ONE);
 
             // inform the user how many numbers we already checked
-            if(counter.mod(ImsInteger.valueOf(informEveryNthNumber)).compareTo(ImsInteger.ZERO)==0)
-            {
+            if (counter.mod(ImsInteger.valueOf(informEveryNthNumber)).compareTo(ImsInteger.ZERO) == 0) {
                 System.out.println("Checked " + counter + " numbers, current basis: " + m);
             }
 
@@ -99,27 +103,25 @@ public class RSA {
             q = ImsInteger.valueOf(2).multiply(m).add(ImsInteger.ONE);
 
 
-        }while(
+        } while (
                 p.isProbablePrime(numOfPrimeTests) && q.isProbablePrime(numOfPrimeTests)
-        );
+                );
 
-        System.out.println("Generated p: " +  p.toString() + ", q: " + q.toString() + ", m: " + m.toString());
+        System.out.println("Generated p: " + p.toString() + ", q: " + q.toString() + ", m: " + m.toString());
     }
 
     public ImsInteger encrypt(ImsInteger x, RSAKey pubKey) {
-        //TODO: Replace pow
-        return x.pow(pubKey.getExponent().getValue().intValue()).mod(pubKey.getModulus());
+        return x.modPow(pubKey.getExponent(), pubKey.getModulus());
     }
 
     public ImsInteger decrypt(ImsInteger y) {
-        //TODO: Replace pow
-        return y.pow(d.getValue().intValue()).mod(q);
+        return y.modPow(d, q);
     }
 
     public ImsInteger decryptOptimized(ImsInteger y) {
         ImsInteger dp = d.mod(p.subtract(ImsInteger.ONE));
         ImsInteger dq = d.mod(q.subtract(ImsInteger.ONE));
-        ImsInteger qInverse = inverse(q,p);
+        ImsInteger qInverse = inverse(q, p);
 
         ImsInteger m1 = y.modPow(dp, q);
         ImsInteger m2 = y.modPow(dq, p);
@@ -130,7 +132,7 @@ public class RSA {
 
     private ImsInteger inverse(ImsInteger a, ImsInteger N) {
         ImsInteger[] ans = a.getBezout(N);
-        if(ans[1].compareTo(ImsInteger.ZERO) == 1) {
+        if (ans[1].compareTo(ImsInteger.ZERO) == 1) {
             return ans[1];
         } else {
             return ans[1].add(N);
