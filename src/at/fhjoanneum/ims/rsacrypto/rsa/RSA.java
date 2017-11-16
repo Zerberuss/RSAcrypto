@@ -117,13 +117,6 @@ public class RSA {
     }
 
 
-
-
-
-
-
-
-
     public ImsInteger encrypt(ImsInteger x, RSAKey pubKey) {
         return x.modPow(pubKey.getExponent(), pubKey.getModulus());
     }
@@ -133,8 +126,10 @@ public class RSA {
     }
 
     public ImsInteger decryptOptimized(ImsInteger y) {
-        ImsInteger dp = d.mod(p.subtract(ImsInteger.ONE));
-        ImsInteger dq = d.mod(q.subtract(ImsInteger.ONE));
+        ImsInteger dp = e.modPow(ImsInteger.valueOf(-1),p.subtract(ImsInteger.ONE));
+        ImsInteger dq = e.modPow(ImsInteger.valueOf(-1),q.subtract(ImsInteger.ONE));
+        //ImsInteger dp = d.mod(p.subtract(ImsInteger.ONE));  //OLD
+        //ImsInteger dq = d.mod(q.subtract(ImsInteger.ONE));  //OLD
         ImsInteger qInverse = inverse(q, p);
 
         ImsInteger m1 = y.modPow(dp, q);
