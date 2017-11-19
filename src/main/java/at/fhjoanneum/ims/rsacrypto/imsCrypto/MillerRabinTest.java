@@ -18,31 +18,45 @@ public class MillerRabinTest extends ProbabilityTest {
 
 	boolean runOnce(ImsInteger possiblePrime, ImsInteger testNumber) {
 
+		boolean success = true;
+
 		// The initial step of Miller-Rabin is a Fermat test
+		// the exponent p-1 is now consecutively halfed (see while loop)
 		ImsInteger exponent = possiblePrime.subtract(ImsInteger.ONE);
-		ImsInteger minusOne = ImsInteger.valueOf(-1).mod(possiblePrime);
 
-		do {
-			ImsInteger solution = testNumber.modPow(exponent, possiblePrime);
+		if(testNumber.modPow(exponent, possiblePrime).compareTo(ImsInteger.ONE)!=0){
+			return false;
+		}
 
+		// while the exponent is even
+		long counter = 0;
+		while(exponent.testBit(0)==false){
+			counter++;
+			// take the squareroot, i.e. half the exponent
+			exponent = exponent.shiftRight(1);
 
-			if(solution.compareTo(minusOne) == 0) {
-				return true;
+			////////////////////////////////////////////////////////
+			// check the result of  a^(p-1) mod p
+			////////////////////////////////////////////////////////
+			ImsInteger result = (testNumber.modPow(exponent, possiblePrime));
+
+			// check for -1 (i.e. p-1)
+			if(result.compareTo(possiblePrime.subtract(ImsInteger.ONE))==0){
+				// if the result is -1 abort with true
+				success = true;
+				break;
+
+				// check if the result is something else than 1 or -1
+			} else if(result.compareTo(ImsInteger.ONE)!=0){
+				// if the result is neither 1 nor -1
+				success = false;
+				break;
 			}
-			if(solution.compareTo(minusOne) != 0 && solution.compareTo(ImsInteger.ONE) != 0) {
-				return false;
-			}
-			if(solution.compareTo(ImsInteger.ONE) == 0) {
-				boolean isDividable = isExponentDividable(exponent);
-				if(isDividable) {
-					exponent = exponent.divide(TWO);
-				} else {
-					return true;
-				}
-			}
 
-		} while (exponent.mod(TWO).compareTo(ImsInteger.ZERO) == 0);
+			// if we reach this line, the result is 1, thus do another round of Miller-Rabin
+		}
 
-		return false;
+
+		return success;
 	}
 }

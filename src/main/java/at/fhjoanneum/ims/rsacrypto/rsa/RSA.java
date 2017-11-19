@@ -24,22 +24,25 @@ public class RSA {
     }
 
     public RSA(int bitLength, boolean optimized) {
+
         generatePQ(bitLength);
         this.n = p.multiply(q);
+
 
         ImsInteger phiN = getPhiN();
 
         if (optimized) {
-            this.e = modPow(ImsInteger.valueOf(16), ImsInteger.ONE, ImsInteger.valueOf(2)).add(ImsInteger.ONE);
-            this.d = generateDecryptionKey();
+            this.e = ImsInteger.valueOf(2).pow(16).add(ImsInteger.ONE);
+
         } else {
 
             do {
-                e = new ImsInteger(bitLength, new Random());
-            } while (e.getGcd(phiN).compareTo(ImsInteger.ONE) != 0);
-            this.d = generateDecryptionKey();
+                e = new ImsInteger(phiN.bitLength(), new Random());
+            } while (e.compareTo(ImsInteger.ZERO) == 0 || e.compareTo(phiN) >= 0 || e.getGcd(phiN).compareTo(ImsInteger.ONE) != 0);
+
         }
 
+        this.d = generateDecryptionKey();
     }
 
     public ImsInteger encrypt(ImsInteger x, RSAKey pubKey) {
@@ -53,7 +56,7 @@ public class RSA {
     public ImsInteger decryptOptimized(ImsInteger y) {
         ImsInteger dp = d.mod(p.subtract(ImsInteger.ONE));
         ImsInteger dq = d.mod(q.subtract(ImsInteger.ONE));
-        ImsInteger qInverse = q.getPhi().mod(p);
+        ImsInteger qInverse = (q.getBezout(p))[0];
 
         ImsInteger m1 = y.modPow(dp, p);
         ImsInteger m2 = y.modPow(dq, q);
@@ -67,7 +70,13 @@ public class RSA {
 
     private ImsInteger generateDecryptionKey() {
 
-        return getPhiN().getBezout(this.e)[1];
+        ImsInteger dKey =  this.e.getBezout(getPhiN())[0];
+        if (dKey.compareTo(ImsInteger.ZERO) < 0) {
+            dKey = dKey.mod(getPhiN());
+        }
+
+        return dKey;
+
     }
 
     private ImsInteger modPow(ImsInteger exponent, ImsInteger mod, ImsInteger base) {
@@ -111,21 +120,19 @@ public class RSA {
         do{
             m = new ImsInteger(bitLength, new Random());
 
-        }while (!millerTest.run(m, NUM_OF_PRIME_TESTS, false));
+        } while (m.compareTo(ImsInteger.ZERO) <= 0 || !millerTest.run(m, NUM_OF_PRIME_TESTS, false));
 
         return m;
     }
 
+
     private void generatePQ(int bitLength) {
-        q = generatePrime(bitLength);
+        this.q = generatePrime(bitLength);
 
         do{
-            p = generatePrime(bitLength);
-        } while (p.compareTo(q) == 0 &&
-                p.subtract(q).compareTo(
-                        ImsInteger.valueOf(2)
-                                .pow(this.n.divide(ImsInteger.valueOf(2))
-                                                .subtract(ImsInteger.valueOf(100)).getValue().intValue())) == -1);
+            this.p = generatePrime(bitLength);
+            this.n = p.multiply(q);
+        } while (p.compareTo(q) == 0);
 
     }
 
