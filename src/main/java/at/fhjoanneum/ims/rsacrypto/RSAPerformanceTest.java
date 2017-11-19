@@ -25,7 +25,9 @@ public class RSAPerformanceTest {
 
             RSA rsaObject;
 
-            if("y".equals(optimized)) {
+            boolean isOptimized = "y".equals(optimized);
+
+            if(isOptimized) {
                 rsaObject = new RSA(bits, true);
             } else if("n".equals(optimized)){
                 rsaObject = new RSA(bits, false);
@@ -37,13 +39,16 @@ public class RSAPerformanceTest {
 
 
             List<ImsInteger> encodedMessages = new ArrayList<>();
+            List<ImsInteger> clearText = new ArrayList<>();
+            RSAKey publicKey = new RSAKey(rsaObject.getN(), rsaObject.getE());
 
             StopWatch stopWatch = new StopWatch();
             stopWatch.start();
 
             for (int i = 0; i < testRuns; i++) {
-                ImsInteger randomNumber = new ImsInteger(bits, new Random());
-                encodedMessages.add(rsaObject.encrypt(randomNumber, new RSAKey((rsaObject.getN()), rsaObject.getE())));
+                ImsInteger randomNumber = new ImsInteger(rsaObject.getN().bitLength() - 1, new Random());
+                clearText.add(randomNumber);
+                encodedMessages.add(rsaObject.encrypt(randomNumber, publicKey));
 
             }
             stopWatch.stop();
@@ -51,8 +56,20 @@ public class RSAPerformanceTest {
 
             stopWatch.reset();
             stopWatch.start();
+            int counter= 0;
             for(ImsInteger message: encodedMessages) {
-                rsaObject.decrypt(message);
+                ImsInteger decrypted;
+                if(isOptimized) {
+                    decrypted = rsaObject.decryptOptimized(message);
+                } else{
+                    decrypted = rsaObject.decrypt(message);
+                }
+                if(decrypted.compareTo(clearText.get(counter)) != 0) {
+                    System.out.println(String.format("Something went wrong: \n Decrypted: %d \n Expected: %d",
+                            decrypted.getValue().intValue(), clearText.get(counter).getValue().intValue()));
+                }
+
+                counter++;
             }
             stopWatch.stop();
             System.out.println(String.format("Decryption of %d messaged took %d ms", testRuns, stopWatch.getElapsedTime()));
