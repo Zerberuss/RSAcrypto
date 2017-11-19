@@ -41,7 +41,7 @@ public class RSATest {
         ImsInteger randomNumber;
 
         do {
-            randomNumber = new ImsInteger(2048, new Random());
+            randomNumber = new ImsInteger(rsa.getN().bitLength() -1 , new Random());
         } while (randomNumber.compareTo(ImsInteger.ZERO) <= 0);
 
         ImsInteger encrypted = rsa.encrypt(randomNumber, new RSAKey(rsa.getN(), rsa.getE()));
@@ -56,13 +56,21 @@ public class RSATest {
         ImsInteger randomNumber;
 
         do {
-            randomNumber = new ImsInteger(rsa.getN().bitLength(), new Random());
+            randomNumber = new ImsInteger(rsa.getN().bitLength() -1, new Random());
         } while (randomNumber.compareTo(ImsInteger.ZERO) <= 0);
 
         ImsInteger encrypted = rsa.encrypt(randomNumber, new RSAKey(rsa.getN(), rsa.getE()));
 
         assertEquals(randomNumber, rsa.decryptOptimized(encrypted));
 
+    }
+
+    @Test
+    public void RSAPerformanceTest() {
+        for(int i = 0; i < 100; i++) {
+            RSAWithGenerationOptimized();
+            System.out.println("Run " + i + " test");
+        }
     }
 
 }

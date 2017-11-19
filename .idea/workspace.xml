@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b649f580-62d0-423b-8d55-3f96310933b4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/at/fhjoanneum/ims/rsacrypto/RSAPerformanceTest.java" afterPath="$PROJECT_DIR$/src/main/java/at/fhjoanneum/ims/rsacrypto/RSAPerformanceTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/at/fhjoanneum/ims/rsacrypto/imsCrypto/MillerRabinTest.java" afterPath="$PROJECT_DIR$/src/main/java/at/fhjoanneum/ims/rsacrypto/imsCrypto/MillerRabinTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/at/fhjoanneum/ims/rsacrypto/rsa/RSA.java" afterPath="$PROJECT_DIR$/src/main/java/at/fhjoanneum/ims/rsacrypto/rsa/RSA.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/at/fhjoanneum/ims/rsacrypto/rsa/RSATest.java" afterPath="$PROJECT_DIR$/src/test/java/at/fhjoanneum/ims/rsacrypto/rsa/RSATest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -52,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RSATest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RSATest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/at/fhjoanneum/ims/rsacrypto/rsa/RSATest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="58" column="50" lean-forward="false" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
+            <state relative-caret-position="496">
+              <caret line="75" column="1" lean-forward="true" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -119,7 +115,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RSAPerformanceTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RSAPerformanceTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/at/fhjoanneum/ims/rsacrypto/RSAPerformanceTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="684">
@@ -537,8 +533,8 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/at/fhjoanneum/ims/rsacrypto/imsCrypto/MillerRabinTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/at/fhjoanneum/ims/rsacrypto/rsa/RSA.java" />
-        <option value="$PROJECT_DIR$/src/test/java/at/fhjoanneum/ims/rsacrypto/rsa/RSATest.java" />
         <option value="$PROJECT_DIR$/src/main/java/at/fhjoanneum/ims/rsacrypto/RSAPerformanceTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/at/fhjoanneum/ims/rsacrypto/rsa/RSATest.java" />
       </list>
     </option>
   </component>
@@ -548,11 +544,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="141" />
-    <option name="y" value="1217" />
-    <option name="width" value="1669" />
-    <option name="height" value="938" />
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="x" value="53" />
+    <option name="y" value="1107" />
+    <option name="width" value="934" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -683,7 +679,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.RSAPerformanceTest">
+  <component name="RunManager" selected="JUnit.RSATest.RSAPerformanceTest">
     <configuration name="RSAPerformanceTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -728,7 +724,7 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="RSATest.RSAOptimizedDecryptionShouldWork" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RSATest.RSAPerformanceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="at.fhjoanneum.ims.rsacrypto.rsa.*" />
@@ -740,7 +736,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="at.fhjoanneum.ims.rsacrypto.rsa" />
       <option name="MAIN_CLASS_NAME" value="at.fhjoanneum.ims.rsacrypto.rsa.RSATest" />
-      <option name="METHOD_NAME" value="RSAOptimizedDecryptionShouldWork" />
+      <option name="METHOD_NAME" value="RSAPerformanceTest" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -821,17 +817,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.RSAPerformanceTest" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.RSATest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.RSATest.RSAOptimizedDecryptionShouldWork" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.RSATest.RSAWithGenerationNotOptimized" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.RSATest.RSAWithGenerationOptimized" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.RSATest.RSAWithGenerationNotOptimized" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.RSATest.RSAWithGenerationOptimized" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.RSATest.RSAPerformanceTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.RSAPerformanceTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.RSATest.RSAWithGenerationOptimized" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.RSATest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.RSATest.RSAWithGenerationNotOptimized" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.RSATest.RSAOptimizedDecryptionShouldWork" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.RSATest.RSAPerformanceTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.RSATest" />
+        <item index="2" class="java.lang.String" itemvalue="Application.RSAPerformanceTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.RSATest.RSAWithGenerationOptimized" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.RSATest.RSAWithGenerationNotOptimized" />
       </list>
     </recent_temporary>
   </component>
@@ -857,22 +853,22 @@
       <workItem from="1511091380303" duration="1787000" />
       <workItem from="1511093249496" duration="505000" />
       <workItem from="1511093780378" duration="1552000" />
-      <workItem from="1511095695090" duration="14291000" />
+      <workItem from="1511095695090" duration="15782000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="RSATest - 2017.11.19 at 18h 25m 12s.xml">
-      <configuration name="RSATest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="RSATest - 2017.11.19 at 18h 27m 14s.xml">
       <configuration name="RSATest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="RSATest - 2017.11.19 at 18h 28m 10s.xml">
       <configuration name="RSATest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RSATest_RSAWithGenerationOptimized - 2017.11.19 at 18h 25m 04s.xml">
-      <configuration name="RSATest.RSAWithGenerationOptimized" configurationId="JUnit" />
+    <history-entry file="RSATest - 2017.11.19 at 20h 38m 07s.xml">
+      <configuration name="RSATest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RSATest - 2017.11.19 at 20h 38m 59s.xml">
+      <configuration name="RSATest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="RSATest_RSAWithGenerationOptimized - 2017.11.19 at 18h 28m 43s.xml">
       <configuration name="RSATest.RSAWithGenerationOptimized" configurationId="JUnit" />
@@ -894,10 +890,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31921000" />
+    <option name="totallyTimeSpent" value="33412000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="53" y="1107" width="1867" height="1053" extended-state="6" />
+    <frame x="53" y="1107" width="934" height="1053" extended-state="4" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -905,14 +902,14 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29310346" sideWeight="0.08511807" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29310346" sideWeight="0.17454955" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29310346" sideWeight="0.91488194" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29310346" sideWeight="0.8254505" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2284459" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1677928" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294893" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1124,21 +1121,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/at/fhjoanneum/ims/rsacrypto/rsa/RSATest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="58" column="50" lean-forward="false" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/at/fhjoanneum/ims/rsacrypto/RSAPerformanceTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
           <caret line="71" column="26" lean-forward="true" selection-start-line="71" selection-start-column="26" selection-end-line="71" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/at/fhjoanneum/ims/rsacrypto/rsa/RSATest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="75" column="1" lean-forward="true" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
