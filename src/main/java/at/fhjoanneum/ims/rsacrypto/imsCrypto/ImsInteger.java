@@ -216,9 +216,7 @@ public class ImsInteger implements Comparable<ImsInteger> {
 			ImsInteger[] res = a.divideAndRemainder(b); 
 			q=res[0];
 			r=res[1];
-			
-			// output the numbers in a=bq+r format to the screen, so that the user can view the algorithm running step by step
-			System.out.println(a + "=" + b + "*" + q + "+" + r);
+
 			
 			// b becomes your new a, r becomes your new b
 			a = b; // prepare the next row of the algorithm
@@ -257,9 +255,7 @@ public class ImsInteger implements Comparable<ImsInteger> {
 			ImsInteger negQuotient = ImsInteger.ZERO.subtract(q);
 			negQuotients.add(0, negQuotient); // add intermediate results at top of list
 			outputNumbers.add(0, a);
-			
-			// output the numbers in a=bq+r format to the screen, so that the user can view the algorithm running step by step
-			System.out.println(a + "=" + b + "*" + q + "+" + r);
+
 			
 			// b becomes your new a, r becomes your new b
 			a = b; // prepare the next row of the algorithm
@@ -270,7 +266,6 @@ public class ImsInteger implements Comparable<ImsInteger> {
 		
 		// the gcd is the b of the last division - which was already moved to a
 		ImsInteger gcd = a;
-		System.out.println("\ngcd="+gcd+"\n");
 		
 		// now iterate over the substitutions of the remainders to get Bezouts equation
 		Iterator<ImsInteger> iter = negQuotients.iterator();
@@ -300,7 +295,6 @@ public class ImsInteger implements Comparable<ImsInteger> {
 			// -> gcd = a*y + b*(x-qy) -> X = y, Y = x-qy
 			ImsInteger Y = x.add(minusQ.multiply(y));
 			ImsInteger X = y;
-			System.out.println(gcd + "=" + aOutput + "*" + X + "+" + bOutput + "*" + Y);
 			x=X;
 			y=Y;
 		}
@@ -400,10 +394,8 @@ public class ImsInteger implements Comparable<ImsInteger> {
 				if( Integer.compare(exponentA, exponentB) < 0)
 				{
 					gcd = gcd.multiply( prime.pow( exponentA ) );
-					System.out.println("prime: " + prime + " exponent: " + exponentA);
 				} else {
 					gcd = gcd.multiply( prime.pow( exponentB ) );
-					System.out.println("prime: " + prime + " exponent: " + exponentB);
 				}
 			}
 			entry = aPrimeFactors.higherEntry(prime);
@@ -442,8 +434,7 @@ public class ImsInteger implements Comparable<ImsInteger> {
 		} else {
 			retmap.put(number, 1);
 		}
-		
-		System.out.println("Retmap" + retmap);
+
 		return retmap;
 	}
 	
@@ -461,4 +452,15 @@ public class ImsInteger implements Comparable<ImsInteger> {
 			
 		return phi;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		ImsInteger that = (ImsInteger) o;
+
+		return myValue != null ? myValue.compareTo(that.myValue) == 0 : that.myValue == null;
+	}
+
 }

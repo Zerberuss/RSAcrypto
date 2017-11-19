@@ -33,6 +33,7 @@ public class RSAPerformanceTest {
                 System.out.println("Wrong input");
                 return;
             }
+            System.out.println("RSA generated ");
 
 
             List<ImsInteger> encodedMessages = new ArrayList<>();
@@ -42,7 +43,7 @@ public class RSAPerformanceTest {
 
             for (int i = 0; i < testRuns; i++) {
                 ImsInteger randomNumber = new ImsInteger(bits, new Random());
-                encodedMessages.add(rsaObject.encrypt(randomNumber, new RSAKey(ImsInteger.valueOf(rsaObject.getN()), rsaObject.getE())));
+                encodedMessages.add(rsaObject.encrypt(randomNumber, new RSAKey((rsaObject.getN()), rsaObject.getE())));
 
             }
             stopWatch.stop();
